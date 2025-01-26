@@ -8,7 +8,7 @@ LABEL maintainer Ascensio System SIA <support@onlyoffice.com>
 ARG BASE_VERSION
 ARG PG_VERSION=14
 ARG OOU_VERSION_MAJOR=8.2.2
-ARG OOU_BUILD=1
+ARG OOU_BUILD=22
 
 ENV OC_RELEASE_NUM=21
 ENV OC_RU_VER=12
@@ -116,16 +116,16 @@ ENV COMPANY_NAME=$COMPANY_NAME \
 ## PACKAGE_FILE="${COMPANY_NAME}-${PRODUCT_NAME}${PRODUCT_EDITION}${PACKAGE_VERSION:+_$PACKAGE_VERSION}_${TARGETARCH:-$(dpkg --print-architecture)}.deb" && \
 ##    wget -q -P /tmp "$PACKAGE_BASEURL/$PACKAGE_FILE" && \
 ##    rm -f /tmp/onlyoffice-documentserver*.deb && \
-RUN    wget -q -P /tmp "https://github.com/thomisus/server/releases/download/${OOU_VERSION_MAJOR}.${OOU_BUILD}/onlyoffice-documentserver_${OOU_VERSION_MAJOR}-${OOU_BUILD}.oou_amd64.deb" && \
+RUN    wget -q -P /tmp "https://github.com/MoozIiSP/unlimited-onlyoffice-package-builder/releases/download/onlyoffice-unlimited-build-debian-11%2F{OOU_VERSION_MAJOR}.${OOU_BUILD}/onlyoffice-documentserver_${OOU_VERSION_MAJOR}-${OOU_BUILD}-kaiei-tokiyasu_amd64.deb" && \
     apt-get -y update && \
     service postgresql start && \
-    apt-get -yq install /tmp/onlyoffice-documentserver_${OOU_VERSION_MAJOR}-${OOU_BUILD}.oou_amd64.deb && \
+    apt-get -yq install /tmp/onlyoffice-documentserver_${OOU_VERSION_MAJOR}-${OOU_BUILD}-kaiei-tokiyasu_amd64.deb && \
     service postgresql stop && \
     chmod 755 /etc/init.d/supervisor && \
     sed "s/COMPANY_NAME/${COMPANY_NAME}/g" -i /etc/supervisor/conf.d/*.conf && \
     service supervisor stop && \
     chmod 755 /app/ds/*.sh && \
-    rm -f /tmp/onlyoffice-documentserver_${OOU_VERSION_MAJOR}-${OOU_BUILD}.oou_amd64.deb && \
+    rm -f /tmp/onlyoffice-documentserver_${OOU_VERSION_MAJOR}-${OOU_BUILD}-kaiei-tokiyasu_amd64.deb && \
     printf "\nGO" >> /var/www/$COMPANY_NAME/documentserver/server/schema/mssql/createdb.sql && \
     printf "\nGO" >> /var/www/$COMPANY_NAME/documentserver/server/schema/mssql/removetbl.sql && \
     printf "\nexit" >> /var/www/$COMPANY_NAME/documentserver/server/schema/oracle/createdb.sql && \
