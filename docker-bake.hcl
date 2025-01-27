@@ -108,7 +108,7 @@ target "documentserver-stable" {
             "docker.io/${COMPANY_NAME}/${PREFIX_NAME}${PRODUCT_NAME}${PRODUCT_EDITION}:${SHORTEST_TAG}",
             "docker.io/${COMPANY_NAME}/${PREFIX_NAME}${PRODUCT_NAME}${PRODUCT_EDITION}:latest",
             equal("-ee",PRODUCT_EDITION) ? "docker.io/${COMPANY_NAME}4enterprise/${PREFIX_NAME}${PRODUCT_NAME}${PRODUCT_EDITION}:${TAG}": "",]
-    platforms = ["linux/amd64", "linux/arm64"]
+    platforms = ["linux/amd64"]  # , "linux/arm64"]
     args = {
         "PULL_TAG": "${PULL_TAG}"
         "COMPANY_NAME": "${COMPANY_NAME}"
@@ -123,7 +123,7 @@ target "documentserver-ucs" {
     tags = [
            "docker.io/${COMPANY_NAME}/${PRODUCT_NAME}${PRODUCT_EDITION}-ucs:${TAG}"
            ]
-    platforms = ["linux/amd64", "linux/arm64"]
+    platforms = ["linux/amd64"]  # "linux/arm64"]
     args = {
         "PRODUCT_EDITION": "${PRODUCT_EDITION}"
         "PRODUCT_NAME": "${PRODUCT_NAME}"
@@ -139,7 +139,7 @@ target "documentserver-nonexample" {
     target = "documentserver-nonexample"
     dockerfile = "production.dockerfile"
     tags = [ "docker.io/${COMPANY_NAME}/${PRODUCT_NAME}${PREFIX_NAME}${PRODUCT_EDITION}:${TAG}-nonexample" ]
-    platforms = ["linux/amd64", "linux/arm64"]
+    platforms = ["linux/amd64"]  # "linux/arm64"]
     args = {
         "PULL_TAG": "${PULL_TAG}"
         "COMPANY_NAME": "${COMPANY_NAME}"
@@ -158,7 +158,7 @@ target "documentserver-stable-rebuild" {
                 equal("",PREFIX_NAME) && equal("true",LATEST) ? "docker.io/${COMPANY_NAME}/${PREFIX_NAME}${PRODUCT_NAME}${PRODUCT_EDITION}:latest": "",
          equal("-ee",PRODUCT_EDITION) && equal("",PREFIX_NAME) ? "docker.io/${COMPANY_NAME}4enterprise/${PREFIX_NAME}${PRODUCT_NAME}${PRODUCT_EDITION}:${TAG}": "",
                                  ]
-    platforms = ["linux/amd64", "linux/arm64"]
+    platforms = ["linux/amd64"]  # "linux/arm64"]
     args = {
         "UCS_PREFIX": "${UCS_PREFIX}"
         "PULL_TAG": "${PULL_TAG}"
